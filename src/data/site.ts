@@ -4,6 +4,14 @@
 //  is read from here.
 // ─────────────────────────────────────────────────────────────
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const asset = <T extends string | null>(path: T): T => {
+  if (typeof path === "string" && path.startsWith("/")) {
+    return `${basePath}${path}` as T;
+  }
+  return path;
+};
+
 export const site = {
   name: "ADRIAN CHERIAN",
   role: "Cybersecurity enthusiast",
@@ -15,9 +23,9 @@ export const site = {
   // Photos live in /public. Leave as null to show the placeholder frame.
   // portrait: shown on the Home page (tall photo, 3:5 works best)
   // cutout:   shown in the About spotlight (PNG with the background removed)
-  portrait: "/adrian.webp" as string | null, // e.g. "/portrait.jpg"
-  logo: "/acv-logo.png" as string, // ACV logo shown in the top bar
-  cutout: "/adrian.webp" as string | null, // e.g. "/cutout.png"
+  portrait: asset("/adrian.webp") as string | null, // e.g. "/portrait.jpg"
+  logo: asset("/acv-logo.png") as string, // ACV logo shown in the top bar
+  cutout: asset("/adrian.webp") as string | null, // e.g. "/cutout.png"
 
   tagline: "Cybersecurity enthusiast and BCA student. Curious by nature. Security-focused by choice.",
 
@@ -56,7 +64,7 @@ export const site = {
   projects: [
     {
       name: "OpsPilot",
-      image: "/projects/opspilot.webp",
+      image: asset("/projects/opspilot.webp"),
       repo: "https://github.com/ACV07/opspilot",
       description:
         "AI incident commander built at a hackathon. It collects evidence from services, asks DeepSeek for the root cause, and waits for human approval before any remediation.",
@@ -64,7 +72,7 @@ export const site = {
     },
     {
       name: "OpsPilot Simulator",
-      image: "/projects/opspilot-simulator.webp",
+      image: asset("/projects/opspilot-simulator.webp"),
       repo: "https://github.com/ACV07/opspilot_simulator",
       description:
         "A fake production environment for OpsPilot. It plays out outage scenarios with logs, metrics and deployments, and exposes rollback and recovery actions.",
@@ -72,7 +80,7 @@ export const site = {
     },
     {
       name: "Game",
-      image: "/projects/game.webp",
+      image: asset("/projects/game.webp"),
       repo: "https://github.com/ACV07/GAME",
       description:
         "Challenge Arena: a web game with coding challenges, drag-and-drop and find-the-error rounds, a live leaderboard and admin controls.",
@@ -80,21 +88,21 @@ export const site = {
     },
     {
       name: "Student Attendance Recorder",
-      image: "/projects/attendance-recorder.webp",
+      image: asset("/projects/attendance-recorder.webp"),
       repo: "https://github.com/ACV07/STUDENT-ATTENDANCE-RECORDER",
       description: "Attendance recorder for teachers. Mark students present or absent in the browser and export the register as CSV.",
       tags: ["HTML", "CSS", "JavaScript"],
     },
     {
       name: "Student Attendance Calculator",
-      image: "/projects/attendance-calculator.webp",
+      image: asset("/projects/attendance-calculator.webp"),
       repo: "https://github.com/ACV07/STUDENT-ATTENDENCE-CALCULATOR",
       description: "A calculator for working out a student's attendance percentage.",
       tags: [] as string[],
     },
     {
       name: "Currency Converter",
-      image: "/projects/currency-converter.webp",
+      image: asset("/projects/currency-converter.webp"),
       repo: "https://github.com/ACV07/CURRENCY-CONVERTER",
       description: "A Java program that converts amounts between currencies such as USD, EUR, GBP, INR and JPY.",
       tags: ["Java"],
