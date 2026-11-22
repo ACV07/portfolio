@@ -56,8 +56,8 @@ export const site = {
   // notes is optional: one or two lines on what you did or learned.
   experience: [
     { role: "SOC Analyst Intern", org: "ITKRAFTZ", from: "Sep 2026", to: "Present", status: "active" as const, notes: "" },
+    { role: "Cybersecurity Analyst Intern", org: "ITKRAFTZ", from: "May 2026", to: "Jul 2026", status: "completed" as const, notes: "" },
     { role: "Cybersecurity Analyst Intern", org: "Hackveda Solutions", from: "Mar 2026", to: "May 2026", status: "completed" as const, notes: "" },
-    { role: "Cybersecurity Analyst Intern", org: "ITKRAFTZ", from: "May 2025", to: "Jul 2025", status: "completed" as const, notes: "" },
   ],
 
   // Projects wheel, in display order. Images live in /public/projects.
