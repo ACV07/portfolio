@@ -20,10 +20,15 @@ export const viewport: Viewport = {
   themeColor: "#0a0a0a",
 };
 
+// On every full load or refresh, forget the old scroll position and any #section in the URL,
+// so the site always starts at the name page (after the loading screen).
+const startAtTop = `try{history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.scrollTo(0,0)}catch(e){}`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body className="min-h-screen bg-bg text-ink">
+        <script dangerouslySetInnerHTML={{ __html: startAtTop }} />
         <Loader />
         <Nav />
         <main>{children}</main>

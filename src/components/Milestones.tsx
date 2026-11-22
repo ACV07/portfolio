@@ -208,7 +208,9 @@ export default function Milestones({ outro, finale }: { outro?: ReactNode; final
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const scroller0 = panel.querySelector<HTMLElement>("[data-cert-scroll]");
       const cpanel = finale ? box.querySelector<HTMLElement>("[data-contact-panel]") : null;
-      gsap.set(panel, { xPercent: 100, autoAlpha: 0, y: 0 });
+      gsap.set(panel, { xPercent: 100, autoAlpha: 0, y: 0, scale: 1 });
+      const dim = panel.querySelector<HTMLElement>("[data-cert-dim]");
+      if (dim) gsap.set(dim, { opacity: 0 });
       if (scroller0) gsap.set(scroller0, { y: 0 });
       if (cpanel) gsap.set(cpanel, { y: window.innerHeight, autoAlpha: 0 });
       let certShown = false;
@@ -263,10 +265,21 @@ export default function Milestones({ outro, finale }: { outro?: ReactNode; final
         .addLabel("certifications", 1.15);
       if (extra > 0 && scroller) tl.to(scroller, { y: -extra, duration: extra / vh }, 1.15);
       if (cpanel) {
-        // Certifications slide up and away while contact rises from the bottom
+        // Stacking: contact slides up over the certifications like a card dropped on a pile,
+        // while the certifications sink back, shrink slightly and dim.
         tl.set(cpanel, { autoAlpha: 1 }, T2)
-          .to(panel, { y: -vh, duration: 1, ease: "power2.inOut" }, T2)
-          .to(cpanel, { y: 0, duration: 1, ease: "power2.inOut" }, T2)
+          .fromTo(
+            cpanel,
+            { y: () => window.innerHeight, borderTopLeftRadius: 28, borderTopRightRadius: 28, boxShadow: "0 -40px 80px rgba(0,0,0,.85)" },
+            { y: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0, duration: 1, ease: "power2.inOut", immediateRender: false },
+            T2,
+          )
+          .to(
+            panel,
+            { scale: 0.9, y: () => -window.innerHeight * 0.06, transformOrigin: "50% 0%", duration: 1, ease: "power2.inOut" },
+            T2,
+          )
+          .to(dim, { opacity: 0.6, duration: 1, ease: "power2.inOut" }, T2)
           .addLabel("contact", T2 + 1.15);
         if (extra2 > 0) tl.to(cpanel, { y: -extra2, duration: extra2 / vh }, T2 + 1.15);
         tl.to({}, { duration: 0.15 }, total - 0.15);
@@ -427,6 +440,7 @@ export default function Milestones({ outro, finale }: { outro?: ReactNode; final
       {outro ? (
         <div data-cert-panel className="absolute inset-x-0 top-[calc(100%-100svh)] z-10 h-svh overflow-hidden border-l border-white/40 bg-deep">
           {outro}
+          <div data-cert-dim aria-hidden="true" className="pointer-events-none absolute inset-0 z-40 bg-black opacity-0" />
         </div>
       ) : null}
       {finale ? (

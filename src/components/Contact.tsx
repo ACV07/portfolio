@@ -62,9 +62,9 @@ export default function Contact({ embedded = false }: { embedded?: boolean }) {
           id="contact-title"
           data-c-word
           aria-label="Let's talk"
-          className="display outline-text overflow-hidden whitespace-nowrap !uppercase text-[min(clamp(44px,16vw,300px),28svh)] leading-[1.05] [--stroke:#6a6a6a]"
+          className="display outline-text overflow-hidden whitespace-nowrap text-[min(clamp(44px,16vw,300px),28svh)] leading-[1.05] [--stroke:#6a6a6a]"
         >
-          {"Let's talk".split("").map((ch, i) => (
+          {"LET'S TALK".split("").map((ch, i) => (
             <span key={i} aria-hidden="true" className="inline-block">
               {ch === " " ? "\u00a0" : ch}
             </span>

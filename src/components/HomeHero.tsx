@@ -162,6 +162,11 @@ export default function HomeHero() {
         </svg>
       </a>
 
+      {/* phones only */}
+      <p className="label absolute inset-x-0 bottom-[68px] z-20 px-6 text-center text-[11px] text-mute md:hidden">
+        Best experienced on desktop
+      </p>
+
       {/* Floor: blends the portrait and the name wall evenly into the page at the bottom */}
       <div
         data-floor
