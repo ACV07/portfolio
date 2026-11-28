@@ -1,13 +1,16 @@
 import type { NextConfig } from "next";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (isGitHubActions ? "/portfolio" : "");
 
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: basePath,
-  images: {
-    unoptimized: true,
-  },
+  ...(isGitHubActions && {
+    output: "export",
+    basePath: basePath,
+    images: {
+      unoptimized: true,
+    },
+  }),
   turbopack: {
     rules: {
       "*.css": {
