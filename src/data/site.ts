@@ -63,6 +63,14 @@ export const site = {
   // Projects wheel, in display order. Images live in /public/projects.
   projects: [
     {
+      name: "Brute Force Attack Detector",
+      image: asset("/projects/brute-force-attack-detector.webp"),
+      repo: "https://github.com/ACV07/Brute-Force-Attack-Detector",
+      description:
+        "A web app that watches login attempts as they happen and flags or blocks suspicious activity, like repeated guessing against an IP or account. It has an admin dashboard with live charts, alerts and block management, plus a simulator for local testing.",
+      tags: ["Python", "Flask", "SQLite", "Chart.js"],
+    },
+    {
       name: "OpsPilot",
       image: asset("/projects/opspilot.webp"),
       repo: "https://github.com/ACV07/opspilot",
@@ -99,13 +107,6 @@ export const site = {
       repo: "https://github.com/ACV07/STUDENT-ATTENDENCE-CALCULATOR",
       description: "A calculator for working out a student's attendance percentage.",
       tags: [] as string[],
-    },
-    {
-      name: "Currency Converter",
-      image: asset("/projects/currency-converter.webp"),
-      repo: "https://github.com/ACV07/CURRENCY-CONVERTER",
-      description: "A Java program that converts amounts between currencies such as USD, EUR, GBP, INR and JPY.",
-      tags: ["Java"],
     },
   ],
 

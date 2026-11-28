@@ -9,6 +9,7 @@ import "@fontsource/cinzel/700.css";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Loader from "@/components/Loader";
+import SpeedLimit from "@/components/SpeedLimit";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-screen bg-bg text-ink">
         <script dangerouslySetInnerHTML={{ __html: startAtTop }} />
         <Loader />
+        <SpeedLimit />
         <Nav />
         <main>{children}</main>
       </body>
